@@ -34,7 +34,7 @@ export default function Header() {
 
               <div className="hidden md:flex flex-col">
                 <h2 className="text-xl font-semibold">ΔΕΝ ΕΧΩ ΟΞΥΓΟΝΟ</h2>
-                <p className="text-sm text-red-100">Ανάλυση πληθυσμού</p>
+                <p className="text-sm text-red-100">Ανάλυση πληθυσμού για όλη την Ελλάδα!</p>
               </div>
             </div>
 
