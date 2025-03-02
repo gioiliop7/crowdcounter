@@ -7,6 +7,7 @@ import {
   Polygon,
   Popup,
   ZoomControl,
+  useMap,
 } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -31,7 +32,13 @@ interface CityData {
   totalPopulation: number;
   totalArea: number;
   color: string;
-  polygons: number[]; // Δείκτες για τα πολύγωνα που ανήκουν στην πόλη
+  polygons: number[];
+}
+
+// Type definition for the FlyToCity component props
+interface FlyToCityProps {
+  center: [number, number] | null;
+  zoom: number;
 }
 
 export default function Leaflet() {
@@ -54,6 +61,49 @@ export default function Leaflet() {
 
   const [cities, setCities] = useState<CityData[]>([]);
   const [selectedCity, setSelectedCity] = useState<string | null>(null);
+
+  // In your main component, add a state to store the center coordinates
+  const [flyToPosition, setFlyToPosition] = useState<[number, number] | null>(null);
+  const [flyToZoom] = useState(15); // Default zoom level when flying to a city
+
+  const getCityCenter = (cityName: string): [number, number] | null => {
+    const cityPolygons = polygons.filter((p) => p.cityName === cityName);
+    if (cityPolygons.length === 0) return null;
+
+    let latSum = 0;
+    let lngSum = 0;
+    let pointCount = 0;
+
+    cityPolygons.forEach((polygon) => {
+      const coordinates = polygon.polygon.getLatLngs();
+
+      if (!Array.isArray(coordinates) || coordinates.length === 0) return;
+
+      const firstRing = coordinates[0] as { lat: number; lng: number }[];
+
+      firstRing.forEach((coord) => {
+        latSum += coord.lat;
+        lngSum += coord.lng;
+        pointCount++;
+      });
+    });
+
+    return pointCount > 0 ? [latSum / pointCount, lngSum / pointCount] : null;
+  };
+
+  function FlyToCity({ center, zoom }: FlyToCityProps) {
+    const map = useMap();
+
+    useEffect(() => {
+      if (center) {
+        map.flyTo(center, zoom, {
+          duration: 1.5, // Animation duration in seconds
+        });
+      }
+    }, [center, map, zoom]);
+
+    return null;
+  }
 
   useEffect(() => {
     const polygonArray = polygonsData.map(
@@ -128,6 +178,12 @@ export default function Leaflet() {
     const cityPolygons = cities.find((city) => city.name === cityName);
     if (cityPolygons && cityPolygons.polygons.length > 0) {
       setSelectedPolygon(cityPolygons.polygons[0]);
+
+      // Get the center of the city and set it as the flyTo position
+      const center = getCityCenter(cityName);
+      if (center) {
+        setFlyToPosition(center);
+      }
     }
   };
 
@@ -173,7 +229,10 @@ export default function Leaflet() {
           />
           <ZoomControl position="bottomright" />
 
-          {/* Αντικατέστησε το τμήμα απεικόνισης πολυγώνων με αυτό */}
+          {flyToPosition && (
+            <FlyToCity center={flyToPosition} zoom={flyToZoom} />
+          )}
+
           {polygons.map((item, index) => (
             <Polygon
               key={index}
