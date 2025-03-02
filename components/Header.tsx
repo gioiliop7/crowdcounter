@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Calendar, MapPin, Heart } from "lucide-react";
+import { Calendar, Heart } from "lucide-react";
 import oksygono from "@/assets/oksygono.png";
 
 export default function Header() {
@@ -39,13 +39,6 @@ export default function Header() {
             </div>
 
             <div className="flex items-center gap-4">
-              <div className="hidden md:block">
-                <div className="flex items-center gap-2">
-                  <MapPin className="h-5 w-5 text-red-200" />
-                  <span className="font-medium">Αθήνα, Ελλάδα</span>
-                </div>
-              </div>
-
               <div className="relative group">
                 <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-red-400 rounded-lg blur opacity-25 group-hover:opacity-75 transition duration-200"></div>
                 <Image

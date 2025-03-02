@@ -113,8 +113,8 @@ export default function Leaflet() {
       <div className="lg:col-span-3 rounded-xl overflow-hidden shadow-2xl relative h-[70vh] lg:h-[100vh]">
         <MapContainer
           center={defaultPosition}
-          zoom={14}
-          minZoom={12}
+          zoom={9}
+          minZoom={9}
           zoomControl={false}
           className="h-full w-full"
         >
