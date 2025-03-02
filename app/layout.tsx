@@ -24,7 +24,6 @@ export const metadata: Metadata = {
     title: "ΔΕΝ ΕΧΩ ΟΞΥΓΟΝΟ | Χαρτογράφηση Διαδηλώσεων Τεμπών",
     description: "Αναλυτικά δεδομένα και οπτικοποίηση πλήθους για τις διαδηλώσεις του δυστυχήματος των Τεμπών",
   },
-  viewport: "width=device-width, initial-scale=1.0",
   robots: "index, follow",
   category: "civic-tech",
   applicationName: "Τέμπη Crowd Estimation",

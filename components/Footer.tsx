@@ -21,6 +21,7 @@ export default function Footer() {
               © Όλα τα δικαιώματα διατηρούνται.
             </p>
             <p className="text-gray-500 text-sm">Giorgos Iliopoulos</p>
+            <p className="text-gray-500 text-sm">v1.1</p>
           </div>
         </div>
       </footer>
