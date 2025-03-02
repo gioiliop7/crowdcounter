@@ -1,7 +1,5 @@
 # ΔΕΝ ΕΧΩ ΟΞΥΓΟΝΟ | Tempi Protest Crowd Estimation
 
-![Tempi Protest Map](https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo3.png)
-
 ## Overview
 
 A web application for visualizing and estimating crowd sizes at protests related to the Tempi railway disaster. This tool allows organizers, journalists, and citizens to make data-driven assessments of demonstration attendance using geospatial analysis.
