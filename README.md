@@ -62,12 +62,12 @@ yarn dev
 │   └── globals.css        # Global styles
 ├── components/
 │   └── Leaflet.tsx        # Map visualization component
+│   └── Header.tsx         # Header Component
+│   └── Footer.tsx         # Footer Component
 ├── data/
 │   └── polygons.json      # Protest area polygon data
 ├── lib/
 │   └── utils.ts           # Utility functions
-└── public/
-    └── images/            # Static images
 ```
 
 ## Usage Guide
